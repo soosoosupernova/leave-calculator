@@ -5,6 +5,8 @@
 - 배포 주소: <https://soosoosupernova.github.io/leave-calculator/>
 - 계산 기준: 근로기준법 제60조와 고용노동부 행정해석
 - 단일 파일(`index.html`)로 동작하며 외부 의존성은 Pretendard 웹폰트 1건뿐입니다.
+- 하단 광고 영역에 네이버 크리에이터샵(`https://cshop.naver.com/sui_pick`) 제휴 배너가 있습니다.
+  네이버 쇼핑 커넥트 활동의 일환으로, 구매 시 일정액의 수수료를 제공받습니다.
 
 ## 로컬에서 열기
 
