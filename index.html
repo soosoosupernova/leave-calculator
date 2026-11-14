@@ -359,7 +359,6 @@
   /* 애드핏 자리(입력 패널 아래) — 배너 폭 320px을 확보하려고 좌우 여백은 안내 문구로 옮김 */
   .ad-top{padding:10px 0 4px}
   .ad-top .ad-note{margin:2px 0 0;padding:0 14px}
-
   /* 추천 큐레이션 카드 */
   .pick{padding:0;border-color:#BFDBFE;background:var(--blue-soft);overflow:hidden}
   .pick-card{display:flex;flex-direction:column;align-items:stretch;padding:18px 16px 16px;color:var(--ink)}
@@ -415,6 +414,11 @@
   @media (max-width:480px){
     .wrap{padding:0 16px}
     .pick-title{font-size:17px}
+  }
+  /* 320px대 기기: 애드핏 배너 최소폭 320px을 확보하려고 광고 카드를 화면 폭에 꽉 채운다 */
+  @media (max-width:359px){
+    .ad-top{margin-left:-16px;margin-right:-16px;border-left:0;border-right:0;border-radius:0}
+    .ad-top .ad-note{padding:0 16px}
   }
   @media (max-width:900px){
     .layout{grid-template-columns:1fr}
