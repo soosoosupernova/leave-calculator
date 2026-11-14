@@ -420,6 +420,10 @@
     .ad-top{margin-left:-16px;margin-right:-16px;border-left:0;border-right:0;border-radius:0}
     .ad-top .ad-note{padding:0 16px}
   }
+  /* 넓은 화면에서는 CTA를 카드 폭에 늘리지 않고 누를 수 있는 크기로 둔다 */
+  @media (min-width:901px){
+    .pick-cta{width:auto;min-width:240px;align-self:flex-start;padding-left:26px;padding-right:26px}
+  }
   @media (max-width:900px){
     .layout{grid-template-columns:1fr}
     .page-head h1{font-size:21px}
