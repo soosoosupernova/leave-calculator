@@ -129,6 +129,7 @@
 
   /* 2단 레이아웃 */
   .layout{display:grid;grid-template-columns:392px minmax(0,1fr);gap:16px;align-items:start}
+  .layout>*{min-width:0}
 
   /* 입력 패널 */
   .panel{background:var(--card);border:1px solid var(--line);border-radius:4px}
@@ -351,15 +352,28 @@
 
   /* 광고 자리 */
   .ad{margin-top:12px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:4px}
-  .ad-banner{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;color:var(--ink)}
-  .ad-banner:hover{text-decoration:none}
-  .ad-banner:hover .ad-cta{text-decoration:underline}
-  .ad-tag{flex:none;font-size:12px;font-weight:600;color:var(--mute);border:1px solid var(--line2);border-radius:2px;padding:1px 6px}
-  .ad-copy{flex:1 1 200px;font-size:12.5px;line-height:1.6;color:var(--body)}
-  .ad-cta{font-size:12.5px;font-weight:600;color:var(--blue);white-space:nowrap}
   .ad-note{margin-top:6px;font-size:12px;line-height:1.6;color:var(--mute)}
-  .adfit-wrap{margin-top:10px;display:flex;justify-content:center;min-height:100px}
-  .adfit-wrap .kakao_ad_area{flex:none}
+  /* 애드핏: 320px 고정 배너가 좁은 화면을 밀어내지 않도록 래퍼에서 폭을 가둔다 */
+  .adfit-wrap{display:flex;justify-content:center;width:100%;max-width:100%;min-height:100px;margin:0 auto;overflow:hidden}
+  .adfit-wrap .kakao_ad_area{flex:none;max-width:100%}
+  /* 애드핏 자리(입력 패널 아래) — 배너 폭 320px을 확보하려고 좌우 여백은 안내 문구로 옮김 */
+  .ad-top{padding:10px 0 4px}
+  .ad-top .ad-note{margin:2px 0 0;padding:0 14px}
+
+  /* 추천 큐레이션 카드 */
+  .pick{padding:0;border-color:#BFDBFE;background:var(--blue-soft);overflow:hidden}
+  .pick-card{display:flex;flex-direction:column;align-items:stretch;padding:18px 16px 16px;color:var(--ink)}
+  .pick-card:hover{text-decoration:none}
+  .pick-head{display:flex;flex-wrap:wrap;align-items:center;gap:3px 7px}
+  .pick-tag{flex:none;font-size:12px;font-weight:600;color:var(--blue);background:#fff;border:1px solid #BFDBFE;border-radius:2px;padding:1px 7px}
+  .pick-src{font-size:12px;color:var(--mute)}
+  .pick-title{display:block;margin-top:10px;font-size:18px;font-weight:700;line-height:1.4;letter-spacing:-0.02em;color:var(--ink)}
+  .pick-card:hover .pick-title{text-decoration:underline;text-underline-offset:3px}
+  .pick-copy{display:block;margin-top:6px;font-size:13px;line-height:1.65;color:var(--body)}
+  .pick-cta{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;min-height:44px;margin-top:14px;padding:10px 16px;border-radius:3px;background:var(--blue2);color:#fff;font-size:14px;font-weight:600;letter-spacing:-0.01em}
+  .pick-card:hover .pick-cta{background:#1D4ED8}
+  .pick-arrow{font-size:15px;line-height:1}
+  .pick .ad-note{margin:0;padding:10px 16px;background:#fff;border-top:1px solid #DBEAFE}
 
   /* 다음 단계 연결 */
   .funnel{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 10px;margin-top:10px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:4px;color:var(--ink)}
@@ -398,6 +412,10 @@
   .faq-body p{font-size:12.5px;line-height:1.85;color:var(--mute)}
   .faq-body p+p{margin-top:7px}
   .faq-body b{color:var(--body);font-weight:600}
+  @media (max-width:480px){
+    .wrap{padding:0 16px}
+    .pick-title{font-size:17px}
+  }
   @media (max-width:900px){
     .layout{grid-template-columns:1fr}
     .page-head h1{font-size:21px}
@@ -519,18 +537,8 @@
           <p>예시 값이 들어 있습니다. 본인 값으로 바꾸면 바로 다시 계산되고, 입력값은 저장·전송되지 않습니다.</p>
         </div>
       </div>
-    </section>
 
-    <section class="col-out" aria-label="계산 결과">
-      <div id="result"></div>
-
-      <div class="ad" aria-label="광고 영역">
-        <a class="ad-banner" href="https://cshop.naver.com/sui_pick" target="_blank" rel="noopener noreferrer">
-          <span class="ad-tag">추천 큐레이션</span>
-          <span class="ad-copy">퇴근 후 10분 식단·데스크 효율템, 직접 골라둔 생활 치트키 모음</span>
-          <span class="ad-cta">sui_pick 구경가기 →</span>
-        </a>
-        <p class="ad-note">네이버 쇼핑 커넥트 활동의 일환으로, 구매 시 일정액의 수수료를 제공받습니다.</p>
+      <div class="ad ad-top" aria-label="광고 영역">
         <div class="adfit-wrap">
           <ins class="kakao_ad_area" style="display:none;"
             data-ad-unit="DAN-DrFPkmRlhQQNbldX"
@@ -538,6 +546,23 @@
             data-ad-height="100"></ins>
         </div>
         <p class="ad-note">광고 여부와 상관없이 모든 계산 결과가 열립니다.</p>
+      </div>
+    </section>
+
+    <section class="col-out" aria-label="계산 결과">
+      <div id="result"></div>
+
+      <div class="ad pick" aria-label="추천 큐레이션">
+        <a class="pick-card" href="https://cshop.naver.com/sui_pick" target="_blank" rel="noopener noreferrer">
+          <span class="pick-head">
+            <span class="pick-tag">추천 큐레이션</span>
+            <span class="pick-src">· 네이버 크리에이터샵</span>
+          </span>
+          <span class="pick-title">퇴근 후 10분 식단 · 데스크 효율템 모음</span>
+          <span class="pick-copy">직접 써본 생활 치트키 32개, 한 번에 구경하기</span>
+          <span class="pick-cta">sui_pick 구경가기 <span class="pick-arrow" aria-hidden="true">→</span></span>
+        </a>
+        <p class="ad-note">네이버 쇼핑 커넥트 활동의 일환으로, 구매 시 일정액의 수수료를 제공받습니다.</p>
       </div>
 
       <div class="funnel funnel-soon">

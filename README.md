@@ -5,9 +5,10 @@
 - 배포 주소: <https://soosoosupernova.github.io/leave-calculator/>
 - 계산 기준: 근로기준법 제60조와 고용노동부 행정해석
 - 단일 파일(`index.html`)로 동작하며 외부 의존성은 Pretendard 웹폰트와 카카오 애드핏 배너 스크립트 2건입니다.
-- 하단 광고 영역에 네이버 크리에이터샵(`https://cshop.naver.com/sui_pick`) 제휴 배너가 있습니다.
+- 결과 카드 아래에 네이버 크리에이터샵(`https://cshop.naver.com/sui_pick`) 추천 큐레이션 카드가 있습니다.
   네이버 쇼핑 커넥트 활동의 일환으로, 구매 시 일정액의 수수료를 제공받습니다.
-- 같은 영역에 카카오 애드핏 광고단위 `DAN-DrFPkmRlhQQNbldX`(320x100)가 있습니다.
+- 입력 패널 바로 아래에 카카오 애드핏 광고단위 `DAN-DrFPkmRlhQQNbldX`(320x100)가 있습니다.
+  모바일(1열)에서는 입력 폼 → 애드핏 → 결과 카드 → 큐레이션 카드 순서가 됩니다.
 
 ## 공유·검색 준비
 
