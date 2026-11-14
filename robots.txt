@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /leave-calculator/
+Disallow:
+
+Sitemap: https://soosoosupernova.github.io/leave-calculator/sitemap.xml
