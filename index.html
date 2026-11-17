@@ -308,6 +308,7 @@
   .draft textarea{display:block;width:100%;min-height:340px;padding:12px;border:0;background:#fff;color:var(--ink);font-size:12.5px;line-height:1.85;resize:vertical}
   .draft textarea:focus{outline:0;background:#FCFDFF}
   .draft-foot{padding:7px 11px;border-top:1px solid var(--line);background:var(--panel);font-size:12px;color:var(--mute)}
+  .draft-print{display:none}
   .fine{padding:12px 18px 0;font-size:12px;line-height:1.7;color:var(--mute)}
   .fine b{color:var(--body);font-weight:600}
 
@@ -447,7 +448,8 @@
   @media print{
     @page{margin:14mm}
     body{background:#fff}
-    .top,.col-form,.ad,.funnel,.faq,.acts,.toast,.link-btn,.quick,.tabs,.result-acts,.copy-opt,.pick,.page-head .lead,.head-meta{display:none!important}
+    .top,.col-form,.ad,.funnel,.faq,.acts,.toast,.link-btn,.quick,.tabs,.result-acts,.copy-opt,.pick,.page-head .lead,.head-meta,
+    .seg-wrap,.draft-head .btn,.draft textarea,.accrual > summary,.draft-foot{display:none!important}
     .layout{display:block}
     .col-out{position:static}
     .result{border-color:#9CA3AF;box-shadow:none}
@@ -455,8 +457,10 @@
     .tab{border:0;background:#fff}
     .pane{display:block!important;border-top:1px solid #D1D5DB;break-inside:auto}
     .pane+.pane{margin-top:10px}
-    .quote,.case,.warn,.note,.check li,.ledger,.cmp,.kv{break-inside:avoid}
-    .accrual[open] summary{display:none}
+    .quote,.case,.warn,.note,.ledger,.cmp,.kv{break-inside:avoid}
+    .check li{display:block;break-inside:avoid}
+    .check input{float:left;margin:3px 8px 0 0}
+    .draft-print{display:block;white-space:pre-wrap;padding:12px;font-size:12.5px;line-height:1.85}
     a{color:#111827}
   }
 </style>
@@ -1005,6 +1009,7 @@
     h += '<div class="draft"><div class="draft-head"><strong>' + esc(mailTitle()) + '</strong>';
     h += '<button type="button" class="btn btn-ghost btn-sm" data-copy="draft">복사</button></div>';
     h += '<textarea id="draft" spellcheck="false" aria-label="' + esc(mailTitle()) + '">' + esc(currentDraft(m)) + '</textarea>';
+    h += '<div class="draft-print" aria-hidden="true">' + esc(currentDraft(m)) + '</div>';
     h += '<div class="draft-foot">문구를 고치면 고친 내용이 그대로 복사됩니다.</div></div>';
     h += '<p class="fine"><b>보내기 전 확인</b> — 회사가 안내한 잔여 일수, 통상임금에 고정수당이 맞게 들어갔는지, 내 계산이 틀렸을 때 정정할 여지를 남겼는지.</p>';
     return h;
@@ -1641,6 +1646,12 @@
       res.addEventListener('click', delegate);
       res.addEventListener('change', onResultChange);
       res.addEventListener('keydown', onResultKeydown);
+      res.addEventListener('input', function (e) {
+        var t = e && e.target ? e.target : null;
+        if (!t || t.id !== 'draft') { return; }
+        var d = res.querySelector('.draft-print');
+        if (d) { d.textContent = t.value; }
+      });
     }
     var panel = $('calc-panel');
     if (panel) { panel.addEventListener('click', delegate); }
