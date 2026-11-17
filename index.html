@@ -275,6 +275,12 @@
   /* 탭 하단 동작 */
   .acts{display:flex;flex-wrap:wrap;gap:8px;padding:13px 18px;border-top:1px solid var(--line)}
   .acts .btn{width:auto;flex:1 1 140px}
+  .result-acts{display:flex;flex-wrap:wrap;gap:8px;padding:12px 18px;border-top:1px solid var(--line);background:var(--card)}
+  .result-acts .btn{width:auto;flex:1 1 130px}
+  .copy-opt{display:flex;align-items:center;gap:8px;font-size:12.5px;line-height:1.6;color:var(--mute);cursor:pointer}
+  .copy-opt input{width:15px;height:15px;margin:0;accent-color:var(--blue2)}
+  .funnel a.funnel-a{text-decoration:none}
+  .funnel a.funnel-a:hover{text-decoration:underline}
 
   /* 버튼 */
   .btn{
@@ -439,14 +445,18 @@
     *{transition:none!important;animation:none!important}
   }
   @media print{
+    @page{margin:14mm}
     body{background:#fff}
-    .top,.col-form,.ad,.funnel,.faq,.acts,.toast,.link-btn,.quick{display:none!important}
+    .top,.col-form,.ad,.funnel,.faq,.acts,.toast,.link-btn,.quick,.tabs,.result-acts,.copy-opt,.pick,.page-head .lead,.head-meta{display:none!important}
     .layout{display:block}
     .col-out{position:static}
-    .result{border-color:#9CA3AF}
+    .result{border-color:#9CA3AF;box-shadow:none}
+    .insight{break-inside:avoid}
     .tab{border:0;background:#fff}
-    .pane{display:block!important;border-top:1px solid #D1D5DB}
+    .pane{display:block!important;border-top:1px solid #D1D5DB;break-inside:auto}
     .pane+.pane{margin-top:10px}
+    .quote,.case,.warn,.note,.check li,.ledger,.cmp,.kv{break-inside:avoid}
+    .accrual[open] summary{display:none}
     a{color:#111827}
   }
 </style>
@@ -573,10 +583,10 @@
         <p class="ad-note">네이버 쇼핑 커넥트 활동의 일환으로, 구매 시 일정액의 수수료를 제공받습니다.</p>
       </div>
 
-      <div class="funnel funnel-soon">
+      <a class="funnel" href="https://soosoosupernova.github.io/resume-rebuilder/" target="_blank" rel="noopener">
         <span class="funnel-t">퇴사 전 이력서·링크드인 한 줄부터 정리해 두세요</span>
-        <span class="funnel-a">이력서 한 줄 개조기 · 오픈 준비 중</span>
-      </div>
+        <span class="funnel-a">이력서 한 줄 개조기 바로 쓰기 →</span>
+      </a>
     </section>
   </div>
 
@@ -660,7 +670,7 @@
 
   var state = {
     model: null, tab: '1', mail: 'a', checks: {}, toastTimer: null,
-    payMode: 'month', payPair: null
+    payMode: 'month', payPair: null, includeAccrual: false
   };
 
   var DEFAULTS = { join: '2024-03-04', leave: '2026-06-30', pay: '3,000,000', used: '5' };
@@ -972,8 +982,7 @@
     h += accrualHTML(m);
     h += basisHTML(m);
     h += '<div class="acts">';
-    h += '<button type="button" class="btn btn-primary" data-copy="all">전체 내용 복사</button>';
-    h += '<button type="button" class="btn btn-ghost" data-action="print">인쇄 · PDF 저장</button>';
+    h += '<label class="copy-opt"><input type="checkbox" data-opt="accrual"' + (state.includeAccrual ? ' checked' : '') + '> 전체 복사에 월별 발생 내역 포함</label>';
     h += '</div>';
     return h;
   }
@@ -1096,6 +1105,11 @@
     var panes = [pane1HTML(m), pane2HTML(m), pane3HTML(m), pane4HTML(m)];
     var h = '<div class="result">';
     h += insightHTML(m);
+    h += '<div class="result-acts">';
+    h += '<button type="button" class="btn btn-primary" data-copy="numbers">숫자 요약만 복사</button>';
+    h += '<button type="button" class="btn btn-ghost" data-copy="all">전체 내용 복사</button>';
+    h += '<button type="button" class="btn btn-ghost" data-action="print">📄 PDF로 저장</button>';
+    h += '</div>';
     h += '<div class="tabs" role="tablist" aria-label="결과 자세히 보기">';
     for (i = 0; i < TABS.length; i++) {
       id = TABS[i][0];
@@ -1207,7 +1221,24 @@
     return lines.join('\n');
   }
 
-  /* ---------------------------------------------------------------- 전체 텍스트 */
+  /* ---------------------------------------------------------------- 복사 텍스트 */
+  /* 카톡·메모에 바로 붙일 숫자 3~4줄 */
+  function numbersText(m) {
+    var L = [];
+    L.push('퇴사 연차 정산 · ' + dot(m.join) + ' ~ ' + dot(m.leave));
+    L.push('법정 연차 ' + m.total + '일 / 사용 ' + fmtDays(m.used) + '일 / 남은 ' + fmtDays(m.remaining) + '일');
+    L.push(m.amount === null
+      ? '미사용 연차수당: ' + payUnitWord(m) + '을 넣으면 계산됩니다'
+      : '미사용 연차수당 ' + comma(m.amount) + '원 (세전)');
+    if (m.company !== null && m.gap === 'loss') {
+      L.push('회사 안내 ' + fmtDays(m.company) + '일보다 ' + fmtDays(m.gapAbs) + '일 적습니다'
+        + (m.gapAmount !== null ? ' (' + comma(m.gapAmount) + '원)' : ''));
+    } else if (m.company !== null && m.gap === 'gain') {
+      L.push('회사 안내가 입사일 기준보다 ' + fmtDays(m.gapAbs) + '일 많습니다');
+    }
+    return L.join('\n');
+  }
+
   function reportText(m) {
     var L = [];
     var i;
@@ -1229,19 +1260,20 @@
     if (m.company !== null) {
       L.push('회사 안내 잔여 ' + fmtDays(m.company) + '일 / 차이 ' + (m.gap === 'loss' ? '미달 ' : m.gap === 'gain' ? '초과 ' : '') + fmtDays(m.gapAbs) + '일' + (m.gapAmount !== null ? ' (' + comma(m.gapAmount) + '원)' : ''));
     }
-    L.push('');
-    L.push('[법정 연차 발생 내역]');
-    for (i = 0; i < m.monthly.length; i++) {
-      L.push(dot(m.monthly[i].date) + ' ' + m.monthly[i].label + ' 1일');
+    if (state.includeAccrual) {
+      L.push('');
+      L.push('[법정 연차 발생 내역]');
+      for (i = 0; i < m.monthly.length; i++) {
+        L.push(dot(m.monthly[i].date) + ' ' + m.monthly[i].label + ' 1일');
+      }
+      for (i = 0; i < m.years.length; i++) {
+        L.push(dot(m.years[i].date) + ' ' + m.years[i].label + ' ' + m.years[i].days + '일');
+      }
+      L.push('합계 ' + m.total + '일');
     }
-    for (i = 0; i < m.years.length; i++) {
-      L.push(dot(m.years[i].date) + ' ' + m.years[i].label + ' ' + m.years[i].days + '일');
-    }
-    L.push('합계 ' + m.total + '일');
     L.push('');
     L.push('[소진과 수당 비교]');
-    L.push('수당 수령: ' + (m.amount === null ? payUnitWord(m) + ' 입력 필요' : comma(m.amount) + '원') + ' / 퇴사일 ' + dot(m.leave));
-    L.push('연차 소진: ' + (m.amount === null ? '같은 기준' : comma(m.amount) + '원 상당') + ' / 마지막 근무일 ' + (m.lastWorkDay ? dot(m.lastWorkDay) : '-'));
+    L.push('수당으로 받으면 퇴사일은 ' + dot(m.leave) + ', 연차로 소진하면 마지막 근무일은 ' + (m.lastWorkDay ? dot(m.lastWorkDay) : '-') + '입니다.');
     L.push('');
     L.push('[근거]');
     L.push('근로기준법 제60조(연차 유급휴가), 제15조(법정 기준 미달 근로조건은 그 부분 무효), 제36조(퇴직 후 14일 이내 금품 청산)');
@@ -1255,11 +1287,8 @@
       L.push('- ' + DOCS[i][0] + ': ' + DOCS[i][2]);
     }
     L.push('');
-    L.push('[메일 초안 A · 부드러운 문의형]');
-    L.push(draftA(m));
-    L.push('');
-    L.push('[메일 초안 B · 공식 요청형]');
-    L.push(draftB(m));
+    L.push('[요청 메일 · ' + mailTitle() + ']');
+    L.push(currentDraft(m));
     L.push('');
     L.push('계산은 참고용입니다. 5인 미만 사업장, 출근율 80% 미만, 휴직 기간이 있으면 결과가 달라집니다.');
     return L.join('\n');
@@ -1439,17 +1468,44 @@
     if (fallbackCopy(text)) { done(); } else { toast('복사가 막혔습니다. 직접 선택해 복사해 주세요.'); }
   }
 
+  /* 입력값이 처음 예시 그대로면 복사 시점에 한 번 더 알려준다 */
+  function isExampleInput() {
+    var j = $('in-join'), l = $('in-leave'), p = $('in-pay'), u = $('in-used'), c = $('in-company');
+    var join = j ? String(j.value) : '';
+    var leave = l ? String(l.value) : '';
+    var pay = p ? String(p.value).replace(/[^\d]/g, '') : '';
+    var used = u ? String(parseFloat(u.value)) : '';
+    var company = c ? String(c.value).replace(/[^\d.]/g, '') : '';
+    return join === DEFAULTS.join && leave === DEFAULTS.leave && pay === '3000000' && used === '5' && !company;
+  }
+
+  function copyMsg(label, text) {
+    var lines = String(text).split('\n').filter(function (l) { return l.trim(); });
+    var first = lines[0] || '';
+    if (first.length > 26) { first = first.slice(0, 26) + '…'; }
+    var msg = label + ' · "' + first + '"';
+    if (lines.length > 1) { msg += ' 외 ' + (lines.length - 1) + '줄'; }
+    if (isExampleInput()) { msg += ' · 예시 값이에요. 내 날짜로 바꾼 뒤 복사하세요.'; }
+    return msg;
+  }
+
   function copyKey(key) {
     var m = state.model;
     if (!m || !m.ok) { toast('날짜를 먼저 입력해 주세요.'); return; }
+    if (key === 'numbers') {
+      var nt = numbersText(m);
+      copyText(nt, copyMsg('숫자 요약 복사됨', nt));
+      return;
+    }
     if (key === 'all') {
-      copyText(reportText(m), '전체 내용을 복사했습니다.');
+      var rt = reportText(m);
+      copyText(rt, copyMsg('전체 내용 복사됨', rt));
       return;
     }
     if (key === 'draft') {
       var ta = $('draft');
       var text = ta && ta.value ? ta.value : currentDraft(m);
-      copyText(text, '메일 초안을 복사했습니다.');
+      copyText(text, copyMsg('메일 초안 복사됨', text));
     }
   }
 
@@ -1525,6 +1581,10 @@
   function onResultChange(e) {
     var t = e && e.target ? e.target : null;
     if (!t || t.type !== 'checkbox') { return; }
+    if (t.getAttribute && t.getAttribute('data-opt') === 'accrual') {
+      state.includeAccrual = !!t.checked;
+      return;
+    }
     var hit = /^ck-(\d+)$/.exec(String(t.id || ''));
     if (!hit) { return; }
     state.checks[hit[1]] = !!t.checked;
@@ -1622,6 +1682,7 @@
       pane4HTML: pane4HTML,
       resultHTML: resultHTML,
       reportText: reportText,
+      numbersText: numbersText,
       draftA: draftA,
       draftB: draftB,
       currentDraft: currentDraft,
