@@ -648,6 +648,7 @@
 <div class="toast" id="toast" role="status" hidden></div>
 
 <script type="text/javascript" src="https://t1.daumcdn.net/kas/static/ba.min.js" async></script>
+<script src="report-save.js?v=20261117a"></script>
 <script>
 (function () {
   'use strict';
@@ -1516,7 +1517,61 @@
   }
 
   function printReport() {
+    if (window.ReportSave) {
+      var enc = '';
+      try { enc = lsStateJSON(); } catch (e) { enc = ''; }
+      window.ReportSave.save({ printUrl: function () { return lsPrintUrl(enc); } });
+      return;
+    }
     if (typeof window !== 'undefined' && window.print) { window.print(); }
+  }
+
+  /* 다른 브라우저(앱 내부 → 기본 브라우저)로 넘어올 때 실어 보낼 입력값 */
+  function lsStateJSON() {
+    var i = readInput();
+    var d = $('draft');
+    return JSON.stringify({
+      join: i.join, leave: i.leave, pay: i.pay, used: i.used, company: i.company,
+      payMode: state.payMode, tab: state.tab, mail: state.mail, draft: d ? d.value : ''
+    });
+  }
+
+  function lsPrintUrl(enc) {
+    var origin = (location.origin && location.origin !== 'null') ? location.origin : '';
+    return origin + location.pathname + '?rs=1' + (enc ? '#s=' + encodeURIComponent(enc) : '');
+  }
+
+  function lsRestoreArrival() {
+    if (!window.ReportSave) { return; }
+    var arr = null;
+    try { arr = window.ReportSave.arrival(); } catch (e) { arr = null; }
+    if (arr && arr.save && arr.state) {
+      try {
+        var v = JSON.parse(arr.state);
+        if (v && typeof v === 'object') {
+          if (v.join && $('in-join')) { $('in-join').value = v.join; }
+          if (v.leave && $('in-leave')) { $('in-leave').value = v.leave; }
+          if (v.pay && $('in-pay')) { $('in-pay').value = v.pay; }
+          if (v.used !== undefined && $('in-used')) { $('in-used').value = v.used; }
+          if (v.company !== undefined && $('in-company')) { $('in-company').value = v.company || ''; }
+          if (v.payMode === 'year') { setPayMode('year'); }
+          if (v.tab) { state.tab = String(v.tab); }
+          if (v.mail) { state.mail = v.mail; }
+          render();
+          if (v.draft) {
+            var d = $('draft');
+            if (d) {
+              d.value = v.draft;
+              var p = document.querySelector('.draft-print');
+              if (p) { p.textContent = v.draft; }
+            }
+          }
+        }
+      } catch (e2) {}
+    }
+    if (arr && arr.save) {
+      window.ReportSave.arrivalPrint({ printUrl: function () { return lsPrintUrl(lsStateJSON()); } });
+    }
   }
 
   function resetForm() {
@@ -1660,6 +1715,7 @@
     applyDefaults();
     applyPayMode();
     render();
+    lsRestoreArrival();
   }
 
   if (typeof globalThis !== 'undefined') {
