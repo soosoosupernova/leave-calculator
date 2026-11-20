@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>연차 정산 계산기 · 퇴사 전 미사용 연차수당 무료 계산</title>
-<meta name="description" content="입사일과 퇴사 예정일만 넣으면 근로기준법 제60조 기준 법정 연차와 미사용 연차수당을 계산합니다. 회사가 안내한 잔여 연차와의 차액, 정산 요청 메일 초안, 퇴사 전 서류까지 모두 무료로 확인하세요.">
+<title>연차 계산기 | 입사일·회계연도 잔여 연차, 연차수당 무료 계산</title>
+<meta name="description" content="입사일과 기준일만 넣으면 근로기준법 제60조 기준 발생 연차와 잔여 연차가 나옵니다. 회계연도 기준 회사와의 차액, 미사용 연차수당 지급 시기까지 무료로 확인하세요. 정산 요청 메일 초안과 퇴사 전 서류 목록도 함께 나옵니다.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://soosoosupernova.github.io/leave-calculator/">
@@ -44,29 +44,41 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "회계연도 기준으로 연차를 주는 회사인데, 퇴사하면 연차가 깎이나요?",
-          "acceptedAnswer": { "@type": "Answer", "text": "깎이면 안 됩니다. 회계연도 기준으로 부여했더라도 퇴사 시점에 입사일 기준으로 산정한 일수보다 적으면 그 차액을 연차수당으로 정산해야 합니다. 반대로 회사 기준이 더 많으면 취업규칙에 퇴직 시 재산정한다는 단서가 없는 한 회사가 준 일수를 그대로 받을 수 있습니다." }
+          "name": "연차 개수 계산기로 1년 미만 연차는 어떻게 세나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "1년 미만 근무자는 1개월을 개근할 때마다 1일씩 발생해 최대 11일이 됩니다(근로기준법 제60조 제2항). 입사일부터 한 달이 지날 때마다 1일이 쌓이므로 입사 3개월 차라면 3일입니다." }
         },
         {
           "@type": "Question",
-          "name": "1년 미만에 발생한 최대 11일은 1년이 지나면 어떻게 되나요?",
-          "acceptedAnswer": { "@type": "Answer", "text": "최초 1년의 근로가 끝날 때까지 사용할 수 있고, 쓰지 못한 일수는 그 다음 날 수당으로 지급되어야 합니다. 회사가 1주년에 이미 정산했다면 퇴사 정산에서 같은 일수를 다시 더하면 이중 계산이 되므로, 그 일수를 이미 사용한 연차에 더해 넣어 계산합니다." }
+          "name": "회계연도 연차 계산기와 입사일 기준 계산 결과가 다른 이유는?",
+          "acceptedAnswer": { "@type": "Answer", "text": "회계연도 기준은 1월 1일처럼 회사가 정한 날에 연차를 한꺼번에 부여하고, 입사일 기준은 내 입사일부터 1년 단위로 발생 일수를 셉니다. 입사 시점이 회계연도 중간이면 부여 시점과 일수가 달라집니다." }
         },
         {
           "@type": "Question",
-          "name": "미사용 연차수당은 언제까지 받아야 하나요?",
-          "acceptedAnswer": { "@type": "Answer", "text": "퇴직일부터 14일 이내에 지급해야 합니다. 당사자 합의로 미룰 수는 있지만 합의가 없으면 임금체불입니다. 청구할 수 있는 기간은 퇴직일로부터 3년입니다." }
+          "name": "미사용 연차수당은 언제 지급되나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "퇴직일부터 14일 이내에 지급해야 합니다(근로기준법 제36조). 당사자 합의로 기일을 미룰 수는 있지만, 합의가 없는데 늦어지면 임금체불입니다." }
         },
         {
           "@type": "Question",
-          "name": "5인 미만 사업장도 같은 기준으로 계산하나요?",
-          "acceptedAnswer": { "@type": "Answer", "text": "아닙니다. 근로기준법 제60조의 연차 규정은 상시 5명 이상 사업장에 적용됩니다. 5인 미만이면 근로계약이나 취업규칙에서 정한 휴가 규정을 따르고, 임금 지급 기한 규정은 그대로 적용됩니다." }
+          "name": "연차수당 계산할 때 식대도 통상임금에 들어가나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "2024년 12월 19일 대법원 전원합의체 판결로 통상임금 판단에서 고정성 요건이 빠지고, 2025년 2월 6일 고용노동부 노사지도 지침이 이를 반영했습니다. 매월 같은 금액을 정액으로 주는 식대는 정기성과 일률성이 있어 통상임금에 넣는 쪽으로 해석되고 있습니다." }
         },
         {
           "@type": "Question",
-          "name": "회사가 연차 사용촉진을 했다며 수당을 주지 않으면 어떻게 하나요?",
-          "acceptedAnswer": { "@type": "Answer", "text": "퇴사로 사용하지 못한 연차는 사용촉진을 했더라도 정산 대상이라는 것이 고용노동부 해석입니다. 촉진 절차가 적법했는지 확인하고, 기록이 남는 방법으로 지급을 요청한 뒤 답이 없으면 관할 고용노동지청에 임금체불 진정을 넣을 수 있습니다." }
+          "name": "퇴사할 때 회사가 연차 소진을 거부하면 어떻게 하나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "연차는 근로자가 사용 시기를 지정할 수 있는 권리이고, 회사는 업무에 중대한 지장이 없는 한 이를 허용해야 합니다(근로기준법 제60조 제5항). 거부로 쓰지 못한 연차는 퇴사할 때 수당으로 정산해야 합니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "연차 계산기 엑셀 대신 이 도구로 확인할 수 있는 범위는?",
+          "acceptedAnswer": { "@type": "Answer", "text": "엑셀 양식은 회사 규칙에 맞춰 수식을 직접 넣어야 하고, 입사일 기준과 회계연도 기준을 함께 비교하기 어렵습니다. 이 계산기는 입사일과 기준일만 넣으면 발생·사용·잔여 일수, 1일 통상임금과 수당 금액, 회사 안내와의 차액까지 한 화면에서 보여 줍니다." }
         }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "수수수 웹툴", "item": "https://soosoosupernova.github.io/" },
+        { "@type": "ListItem", "position": 2, "name": "연차 계산기", "item": "https://soosoosupernova.github.io/leave-calculator/" }
       ]
     }
   ]
@@ -402,6 +414,8 @@
   .foot p{font-size:12px;line-height:1.75;color:var(--mute)}
   .foot p+p{margin-top:6px}
   .foot b{color:var(--body);font-weight:600}
+  .foot-links{display:flex;flex-wrap:wrap;gap:4px 14px;margin-bottom:10px;font-size:12.5px}
+  .foot-links a{font-weight:600}
 
   /* 자주 묻는 질문 */
   .faq{margin-top:26px;padding:20px 20px 6px;background:var(--card);border:1px solid var(--line);border-radius:4px}
@@ -418,6 +432,23 @@
   .faq-body p{font-size:12.5px;line-height:1.85;color:var(--mute)}
   .faq-body p+p{margin-top:7px}
   .faq-body b{color:var(--body);font-weight:600}
+
+  /* 검색용 안내 본문 */
+  .guide{margin-top:26px;padding:20px 20px 22px;background:var(--card);border:1px solid var(--line);border-radius:4px}
+  .guide h2{font-size:16px;margin-top:24px;line-height:1.45}
+  .guide h2:first-child{margin-top:0}
+  .guide p{margin-top:8px;font-size:12.5px;line-height:1.85;color:var(--mute);word-break:keep-all}
+  .guide b{color:var(--body);font-weight:600}
+  .guide-table{width:100%;margin-top:12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .guide-table caption{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+  .guide-table th,.guide-table td{padding:9px 8px;font-size:12px;line-height:1.55;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;word-break:keep-all}
+  .guide-table tr:last-child th,.guide-table tr:last-child td{border-bottom:0}
+  .guide-table thead th{font-weight:600;color:var(--body);background:var(--panel)}
+  .guide-table tbody th{font-weight:600;color:var(--body);width:38%}
+  .guide-table td{color:var(--mute)}
+  .guide-links{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:12.5px}
+  .guide-links a{color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(37,99,235,.28);padding-bottom:1px}
+  .guide-links a:hover{color:var(--ink);border-bottom-color:var(--ink)}
   @media (max-width:480px){
     .wrap{padding:0 16px}
     .pick-title{font-size:17px}
@@ -448,7 +479,7 @@
   @media print{
     @page{margin:14mm}
     body{background:#fff}
-    .top,.col-form,.ad,.funnel,.faq,.acts,.toast,.link-btn,.quick,.tabs,.result-acts,.copy-opt,.pick,.page-head .lead,.head-meta,
+    .top,.col-form,.ad,.funnel,.faq,.guide,.acts,.toast,.link-btn,.quick,.tabs,.result-acts,.copy-opt,.pick,.page-head .lead,.head-meta,
     .seg-wrap,.draft-head .btn,.draft textarea,.accrual > summary,.draft-foot{display:none!important}
     .layout{display:block}
     .col-out{position:static}
@@ -595,50 +626,87 @@
     </section>
   </div>
 
+  <section class="guide" id="guide" aria-label="연차 계산 기준 안내">
+    <h2>입사일 기준 연차 계산법</h2>
+    <p>연차는 내 입사일부터 1년이 지날 때마다 새로 발생합니다. 1년간 80% 이상 출근하면 15일이 생기고, 3년 이상 근무하면 2년마다 1일씩 더해져 최대 25일이 됩니다. 1년 미만일 때는 1개월을 빠짐없이 일한 달마다 1일씩, 최대 11일입니다.</p>
+    <table class="guide-table">
+      <caption>근속 기간에 따른 법정 연차 발생 일수(근로기준법 제60조)</caption>
+      <thead>
+        <tr><th scope="col">근속 기간</th><th scope="col">법정 발생 일수</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">1년 미만</th><td>1개월 개근마다 1일, 최대 11일 (제60조 제2항)</td></tr>
+        <tr><th scope="row">1년 이상 ~ 3년 미만</th><td>15일 (제60조 제1항)</td></tr>
+        <tr><th scope="row">3년 이상</th><td>15일 + 2년마다 1일, 최대 25일 (제60조 제4항)</td></tr>
+      </tbody>
+    </table>
+    <p>가산 일수는 &ldquo;15 + (근속연수 − 1) ÷ 2&rdquo;의 정수 부분입니다. 3년이면 16일, 5년이면 17일, 21년이면 25일에서 멈춥니다. 1년 미만에 쌓인 일수는 최초 1년의 근로가 끝날 때까지 쓰고, 남으면 그 다음 날 수당으로 바뀝니다.</p>
+
+    <h2>회계연도 기준 회사에서 퇴사할 때 정산</h2>
+    <p>회사가 1월 1일부터 12월 31일까지를 회계연도로 두고 연차를 한꺼번에 부여하면, 입사일이 1월 1일이 아닌 사람은 첫해 연차를 월 단위로 나누어 받는 경우가 많습니다. 이 방식이 입사일 기준으로 계산한 일수보다 적으면, 퇴사할 때 그 차액을 연차수당으로 정산해야 합니다.</p>
+    <p>반대로 회사가 준 일수가 입사일 기준보다 많으면, 취업규칙에 &ldquo;퇴직 시 입사일 기준으로 다시 계산한다&rdquo;는 단서가 없는 한 그대로 받을 수 있습니다. 위 &ldquo;회사 안내 잔여 연차로 비교하기&rdquo;에 인사팀이 알려준 숫자를 넣으면 어느 쪽이 많고 차액이 얼마인지 바로 나옵니다.</p>
+    <p>상시 5명 미만 사업장에는 근로기준법 제60조가 적용되지 않아 근로계약이나 취업규칙의 휴가 규정을 따릅니다. 다만 임금 지급 기한(제36조)은 그대로 적용됩니다.</p>
+
+    <h2>연차수당 계산과 지급 시기</h2>
+    <p>미사용 연차수당은 &ldquo;남은 일수 × 1일 통상임금&rdquo;입니다. 1일 통상임금은 월 통상임금을 209시간으로 나눈 시급에 8시간을 곱해 구하고, 원 단위에서 버립니다. 주 40시간 근무 기준입니다.</p>
+    <p>통상임금에는 기본급과 매월 똑같이 나오는 고정수당이 들어갑니다. 상여금과 연장근로수당은 통상임금에서 빠지는 경우가 많고, 매월 정액으로 지급하는 식대는 2024년 12월 대법원 전원합의체 판결 이후 통상임금에 넣는 쪽으로 해석되고 있습니다.</p>
+    <p>지급 시기는 퇴직일부터 14일 이내입니다(제36조). 합의로 미룰 수는 있지만, 합의가 없으면 임금체불입니다. 청구할 수 있는 기간은 3년입니다(제49조).</p>
+    <p class="guide-links">같이 보면 좋은 도구 — <a href="https://soosoosupernova.github.io/">도구 모음</a> <a href="https://soosoosupernova.github.io/destiny-number/">생년월일 수비학 계산기</a> <a href="https://soosoosupernova.github.io/resume-rebuilder/">이력서·링크드인 개조기</a></p>
+  </section>
+
   <section class="faq" id="faq" aria-labelledby="faq-title">
     <h2 id="faq-title">연차 정산, 무엇을 확인해야 하나</h2>
     <p class="faq-intro">연차유급휴가는 근로기준법 제60조에 따라 1년간 80% 이상 출근하면 15일이 발생하고, 3년 이상 근무하면 2년마다 1일이 더해져 최대 25일까지 늘어납니다. 1년 미만일 때는 1개월 개근에 1일씩 최대 11일이 발생합니다. 퇴사할 때 남은 연차는 통상임금(기본급과 매월 고정수당)을 기준으로 수당으로 정산하며, 회사가 회계연도 기준으로 연차를 관리했다면 입사일 기준으로 다시 계산해 모자란 일수를 채워야 합니다. 이 계산기는 그 세 가지(법정 발생 일수, 남은 일수, 통상임금 기준 금액)를 한 화면에서 확인하도록 만들었습니다.</p>
     <h3 class="faq-sub">자주 묻는 질문</h3>
     <details class="faq-item">
-      <summary>회계연도 기준으로 연차를 주는 회사인데, 퇴사하면 연차가 깎이나요?</summary>
+      <summary>연차 개수 계산기로 1년 미만 연차는 어떻게 세나요?</summary>
       <div class="faq-body">
-        <p>깎이면 안 됩니다. 회사가 1월 1일부터 12월 31일까지를 기준으로 연차를 부여했더라도, 퇴사 시점에는 <b>입사일 기준으로 산정한 일수와 비교해 모자란 만큼을 연차수당으로 정산</b>해야 합니다. 근거는 고용노동부 근로개선정책과-5352(2011. 12. 19.)와 근로기준과-5802(2009. 12. 31.)입니다.</p>
-        <p>반대로 회사 기준 일수가 입사일 기준보다 많다면, 취업규칙에 &ldquo;퇴직 시 입사일 기준으로 재산정한다&rdquo;는 단서가 없는 한 회사가 준 일수를 그대로 받을 수 있습니다. 위 입력란의 &ldquo;회사 안내 잔여 연차로 비교하기&rdquo;에 인사팀이 알려준 숫자를 넣으면 미달 일수와 금액이 바로 나옵니다.</p>
+        <p>1년 미만 근무자는 1개월을 개근할 때마다 1일씩 발생해 최대 11일이 됩니다(근로기준법 제60조 제2항). 입사일부터 한 달이 지날 때마다 1일이 쌓이므로 입사 3개월 차라면 3일입니다.</p>
+        <p>최초 1년의 근로가 끝날 때까지 쓸 수 있고, 쓰지 못한 일수는 그 다음 날 수당으로 바뀝니다(제60조 제7항). 회사가 1주년 시점에 이미 11일분을 정산했다면 위 입력란의 &ldquo;이미 사용한 연차&rdquo;에 그 일수를 더해 넣어 이중 계산을 피하세요.</p>
       </div>
     </details>
     <details class="faq-item">
-      <summary>1년 미만에 발생한 최대 11일은 1년이 지나면 어떻게 되나요?</summary>
+      <summary>회계연도 연차 계산기와 입사일 기준 계산 결과가 다른 이유는?</summary>
       <div class="faq-body">
-        <p>1년 미만 근로자의 연차는 1개월 개근에 1일씩 최대 11일까지 발생하고, <b>최초 1년의 근로가 끝날 때까지</b> 사용할 수 있습니다(제60조제2항·제7항). 그때까지 쓰지 못한 일수는 1년이 지난 다음 날 수당으로 지급되어야 합니다.</p>
-        <p>그래서 회사가 입사 1주년 시점에 이미 11일분을 정산했다면, 퇴사 정산에서 같은 일수를 또 더하면 이중 계산이 됩니다. 이때는 그 일수를 &ldquo;이미 사용한 연차&rdquo;에 더해 넣으면 남은 일수와 금액이 겹치지 않습니다. 회사에서 받은 연차 정산 내역서에 1년 미만 연차 정산 항목이 있는지 먼저 확인해 보세요.</p>
+        <p>회계연도 기준은 1월 1일처럼 회사가 정한 날에 연차를 한꺼번에 부여하고, 입사일 기준은 내 입사일부터 1년 단위로 발생 일수를 셉니다. 입사 시점이 회계연도 중간이면 부여 시점과 일수가 달라집니다.</p>
+        <p>퇴사할 때는 회계연도 기준으로 줬더라도 입사일 기준으로 다시 계산해 모자란 일수를 정산해야 합니다. 반대로 회사 기준이 더 많으면 취업규칙에 &ldquo;퇴직 시 재산정&rdquo; 단서가 없는 한 그대로 받습니다. 위 입력란에서 두 결과를 나란히 볼 수 있습니다.</p>
       </div>
     </details>
     <details class="faq-item">
-      <summary>미사용 연차수당은 언제까지 받아야 하나요?</summary>
+      <summary>미사용 연차수당은 언제 지급되나요?</summary>
       <div class="faq-body">
-        <p>퇴직일부터 <b>14일 이내</b>에 지급해야 합니다(근로기준법 제36조). 당사자 합의로 기일을 미룰 수는 있지만, 합의가 없는데 늦어지면 임금체불에 해당합니다.</p>
-        <p>청구할 수 있는 기간은 퇴직일로부터 <b>3년</b>입니다(제49조 임금채권 소멸시효). 14일이 지나도 입금되지 않으면 먼저 메일이나 문자처럼 기록이 남는 방법으로 요청하고, 답이 없으면 사업장 관할 고용노동지청에 임금체불 진정을 낼 수 있습니다. &ldquo;요청 메일&rdquo; 탭의 초안에 날짜·일수·금액이 자동으로 들어갑니다.</p>
+        <p>퇴직일부터 14일 이내에 지급해야 합니다(근로기준법 제36조). 당사자 합의로 기일을 미룰 수는 있지만, 합의가 없는데 늦어지면 임금체불입니다.</p>
+        <p>청구할 수 있는 기간은 퇴직일로부터 3년입니다(제49조). 14일이 지나도 입금되지 않으면 메일이나 문자처럼 기록이 남는 방법으로 요청하고, 답이 없으면 사업장 관할 고용노동지청에 임금체불 진정을 낼 수 있습니다. &ldquo;요청 메일&rdquo; 탭 초안에 날짜·일수·금액이 자동으로 들어갑니다.</p>
       </div>
     </details>
     <details class="faq-item">
-      <summary>5인 미만 사업장도 같은 기준으로 계산하나요?</summary>
+      <summary>연차수당 계산할 때 식대도 통상임금에 들어가나요?</summary>
       <div class="faq-body">
-        <p>아닙니다. 근로기준법 제60조(연차)와 제61조(사용촉진)는 <b>상시 5명 이상 사업장</b>에 적용됩니다(제11조). 5인 미만이면 이 계산기의 법정 연차 결과가 그대로 적용되지 않고, 근로계약이나 취업규칙에서 정한 휴가 규정을 따릅니다.</p>
-        <p>다만 임금 지급 기한(제36조)과 퇴직금 규정은 5인 미만에도 적용됩니다. 사업장 규모는 4대보험 가입자 수나 사업자등록 기준으로 확인할 수 있고, 판단이 어려우면 고용노동부 상담(1350)에 물어보세요.</p>
+        <p>2024년 12월 19일 대법원 전원합의체 판결로 통상임금 판단에서 고정성 요건이 빠지고, 2025년 2월 6일 고용노동부 노사지도 지침이 이를 반영했습니다. 매월 같은 금액을 정액으로 주는 식대는 정기성과 일률성이 있어 통상임금에 넣는 쪽으로 해석되고 있습니다.</p>
+        <p>다만 실제 식사에 쓴 만큼 정산하는 실비변상 성격이면 빠집니다. 이름이 아니라 지급 조건과 운용 실태로 판단하므로, 인사팀에 식대가 정액인지 실비 정산인지 먼저 확인하세요. 금액 입력란에 식대를 넣은 경우와 뺀 경우로 두 번 계산하면 차액이 얼마인지 바로 보입니다.</p>
       </div>
     </details>
     <details class="faq-item">
-      <summary>회사가 연차 사용촉진을 했다며 수당을 주지 않으면 어떻게 하나요?</summary>
+      <summary>퇴사할 때 회사가 연차 소진을 거부하면 어떻게 하나요?</summary>
       <div class="faq-body">
-        <p>퇴사로 사용하지 못한 연차는 사용촉진 절차를 밟았더라도 정산 대상이라는 것이 고용노동부 해석입니다. 촉진 조치 뒤 휴가 지정일 전에 퇴직해 사용하지 못한 경우에도 보상해야 한다는 답변이 있습니다.</p>
-        <p>다만 회사가 제61조 절차(서면 촉구 → 사용 시기 지정)를 실제로 거쳤는지는 확인이 필요합니다. &ldquo;법적 근거&rdquo; 탭에 조문 원문과 행정해석 번호를 모아 두었으니, 회신 메일에 붙여 근거를 남기세요.</p>
+        <p>연차는 근로자가 사용 시기를 지정할 수 있는 권리이고, 회사는 업무에 중대한 지장이 없는 한 이를 허용해야 합니다(근로기준법 제60조 제5항). 거부로 쓰지 못한 연차는 퇴사할 때 수당으로 정산해야 합니다.</p>
+        <p>사용촉진을 이유로 거부한다면 서면 촉구와 사용 시기 지정 절차를 실제로 거쳤는지 확인하세요. 퇴사로 사용하지 못한 연차는 촉진 뒤에도 정산 대상이라는 것이 고용노동부 해석입니다. 요청은 기록이 남는 방법으로 하고, 답이 없으면 고용노동지청 진정으로 이어갈 수 있습니다. &ldquo;법적 근거&rdquo; 탭에 조문 원문과 행정해석 번호를 모아 두었습니다.</p>
       </div>
     </details>
+    <details class="faq-item">
+      <summary>연차 계산기 엑셀 대신 이 도구로 확인할 수 있는 범위는?</summary>
+      <div class="faq-body">
+        <p>엑셀 양식은 회사 규칙에 맞춰 수식을 직접 넣어야 하고, 입사일 기준과 회계연도 기준을 함께 비교하기 어렵습니다. 이 계산기는 입사일과 기준일만 넣으면 발생·사용·잔여 일수, 1일 통상임금과 수당 금액, 회사 안내와의 차액까지 한 화면에서 보여 줍니다.</p>
+        <p>다만 상시 5인 미만 사업장, 1년간 출근율 80% 미만인 해, 휴직·육아휴직이 낀 기간은 제60조 계산과 결과가 달라질 수 있습니다. 계산 근거와 조문은 &ldquo;법적 근거&rdquo; 탭에 모아 두었습니다.</p>
+      </div>
+    </details>
+
   </section>
 
   <p class="sr-only" id="live" aria-live="polite"></p>
 
   <footer class="foot">
+    <p class="foot-links"><a href="https://soosoosupernova.github.io/">도구 모음</a><a href="https://soosoosupernova.github.io/destiny-number/">생년월일 수비학 계산기</a><a href="https://soosoosupernova.github.io/relationship-report/">관계 패턴 리포트</a><a href="https://soosoosupernova.github.io/resume-rebuilder/">이력서 한 줄 개조기</a></p>
     <p><b>참고용 계산기입니다.</b> 근로기준법 제60조와 고용노동부 행정해석을 기준으로 계산합니다. 취업규칙·근로계약이 법보다 유리하면 그 기준이 우선하고, 1년간 출근율 80% 미만인 해, 5인 미만 사업장, 휴직·육아휴직 등이 있으면 결과가 달라집니다. 개별 사안의 법적 판단은 공인노무사나 변호사 상담을 받으세요.</p>
     <p>이 계산기는 무료입니다. 회원가입도 결제도 없이 모든 계산 결과와 메일 초안, 서류 목록이 처음부터 열립니다. 운영 비용은 위 광고 영역으로 충당합니다.</p>
     <p><b>개인정보</b> — 입사일·급여 같은 입력값은 브라우저 안에서만 계산되고 서버로 전송되거나 저장되지 않습니다. 페이지에는 광고 게재를 위한 카카오 애드핏 스크립트가 로드되며, 광고 노출·클릭에 관한 처리는 카카오 애드핏 정책을 따릅니다.</p>
